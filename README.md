@@ -1,5 +1,27 @@
 # R3D: Revisiting 3D Policy Learning
+<a href="https://https://r3d-policy.github.io"><strong>Project Page</strong></a>
+  |
+  <a href="https://"><strong>Paper</strong></a>
+  |
+  <a href="https://"><strong>Twitter</strong></a> | <a href="Place Holder"><strong>YouTube</strong></a>
 
+  <a href="https:// /">Zhengdong Hong*</a>, 
+  <a href="https:// /">Shenrui Wu*</a>, 
+  <a href="https:// /">Haozhe Cui*</a>, 
+  <a href="https:// /">Shiqi Yang</a>, 
+  <a href="https:// /">Boyi Zhao</a>, 
+  <a href="https:// /">Ran Ji</a>, 
+  <a href="https:// /">Yiyang He</a>, 
+  <a href="https:// /">Hangxing Zhang</a>, 
+  <a href="https:// /">Zundong Ke</a>, 
+  <a href="https:// /">Jun Wang</a>, 
+  <a href="https:// /">Guofeng Zhang</a>
+  <a href="https:// /">Jiayuan Gu†</a>
+
+
+<div align="center">
+  <img src="assets/R3D_figure.png" alt="R3D" width="100%">
+</div>
 
 ## Installation
 
