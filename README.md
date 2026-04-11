@@ -1,5 +1,5 @@
 # R3D: Revisiting 3D Policy Learning
-<a href="https://https://r3d-policy.github.io"><strong>Project Page</strong></a>
+<a href="https://r3d-policy.github.io"><strong>Project Page</strong></a>
   |
   <a href="https://"><strong>Paper</strong></a>
   |
