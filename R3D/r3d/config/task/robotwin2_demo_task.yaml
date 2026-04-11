@@ -1,0 +1,50 @@
+name: ${task_name}-${setting}
+
+shape_meta: &shape_meta
+  # acceptable types: rgb, low_dim
+  obs:
+    point_cloud:
+      shape: [1024, 6]
+      type: point_cloud
+    agent_pos:
+      shape: [14]
+      type: low_dim
+  action: 
+    shape: [14] # 28 when you use auxiliary task; 14 otherwise
+
+env_runner:
+  _target_: r3d.env_runner.robotwin2_runner.RoboTwin2Runner
+  output_dir: ${hydra:run.dir}
+  task_name: ${task_name}  # Can be overridden
+  seed: 0
+  eval_episodes: 100
+  max_steps: 2000
+  n_obs_steps: ${n_obs_steps}
+  n_action_steps: ${n_action_steps}
+  task_config: demo_clean  # RoboTwin 2.0 task config (demo_clean, demo_randomized, etc.)
+  instruction_type: unseen  # 'seen' or 'unseen'
+  action_space_type: joint  # 'joint' or 'ee'
+  head_camera_type: D435  # Camera type
+  save_video: true
+  tqdm_interval_sec: 5.0
+
+dataset:
+  _target_: r3d.dataset.robotwin_dataset.RobotwinDataset
+  zarr_path: R3D/data/${task.name}-50.zarr
+  horizon: ${horizon}
+  pad_before: ${eval:'${n_obs_steps}-1'}
+  pad_after: ${eval:'${n_action_steps}-1'}
+  seed: 42
+  val_ratio: 0.02
+  max_train_episodes: null
+  use_data_augmentation: ${data_augmentation.use_augmentation}
+  pc_xyz_noise_std: ${data_augmentation.pc_xyz_noise_std}
+  pc_rgb_noise_std: ${data_augmentation.pc_rgb_noise_std}
+  agent_pos_noise_std: ${data_augmentation.agent_pos_noise_std}
+  # Color jitter parameters
+  use_color_jitter: ${data_augmentation.use_color_jitter}
+  brightness_range: ${data_augmentation.brightness_range}
+  contrast_range: ${data_augmentation.contrast_range}
+  saturation_range: ${data_augmentation.saturation_range}
+
+  use_target_ee: ${policy.use_target_ee}

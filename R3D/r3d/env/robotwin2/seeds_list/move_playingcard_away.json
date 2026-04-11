@@ -1,0 +1,1414 @@
+{
+  "100000demo_clean": {
+    "seeds": [
+      100000,
+      100001,
+      100002,
+      100003,
+      100004,
+      100005,
+      100006,
+      100007,
+      100008,
+      100009,
+      100010,
+      100011,
+      100012,
+      100013,
+      100014,
+      100015,
+      100016,
+      100017,
+      100018,
+      100019,
+      100020,
+      100021,
+      100022,
+      100023,
+      100024,
+      100025,
+      100026,
+      100027,
+      100028,
+      100029,
+      100030,
+      100031,
+      100032,
+      100033,
+      100034,
+      100035,
+      100036,
+      100037,
+      100038,
+      100039,
+      100040,
+      100041,
+      100042,
+      100043,
+      100044,
+      100045,
+      100046,
+      100047,
+      100048,
+      100049,
+      100050,
+      100051,
+      100052,
+      100053,
+      100054,
+      100055,
+      100056,
+      100057,
+      100058,
+      100059,
+      100060,
+      100061,
+      100062,
+      100063,
+      100064,
+      100065,
+      100066,
+      100067,
+      100068,
+      100069,
+      100070,
+      100071,
+      100072,
+      100073,
+      100074,
+      100075,
+      100076,
+      100077,
+      100078,
+      100079,
+      100080,
+      100081,
+      100082,
+      100083,
+      100084,
+      100085,
+      100086,
+      100087,
+      100088,
+      100089,
+      100090,
+      100091,
+      100092,
+      100093,
+      100094,
+      100095,
+      100096,
+      100097,
+      100098,
+      100099
+    ],
+    "episode_info": {
+      "100000": [
+        {
+          "{A}": "081_playingcards/base2",
+          "{a}": "left"
+        }
+      ],
+      "100001": [
+        {
+          "{A}": "081_playingcards/base2",
+          "{a}": "left"
+        }
+      ],
+      "100002": [
+        {
+          "{A}": "081_playingcards/base0",
+          "{a}": "left"
+        }
+      ],
+      "100003": [
+        {
+          "{A}": "081_playingcards/base2",
+          "{a}": "right"
+        }
+      ],
+      "100004": [
+        {
+          "{A}": "081_playingcards/base0",
+          "{a}": "left"
+        }
+      ],
+      "100005": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "left"
+        }
+      ],
+      "100006": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "right"
+        }
+      ],
+      "100007": [
+        {
+          "{A}": "081_playingcards/base2",
+          "{a}": "left"
+        }
+      ],
+      "100008": [
+        {
+          "{A}": "081_playingcards/base2",
+          "{a}": "left"
+        }
+      ],
+      "100009": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "left"
+        }
+      ],
+      "100010": [
+        {
+          "{A}": "081_playingcards/base2",
+          "{a}": "right"
+        }
+      ],
+      "100011": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "right"
+        }
+      ],
+      "100012": [
+        {
+          "{A}": "081_playingcards/base2",
+          "{a}": "right"
+        }
+      ],
+      "100013": [
+        {
+          "{A}": "081_playingcards/base2",
+          "{a}": "right"
+        }
+      ],
+      "100014": [
+        {
+          "{A}": "081_playingcards/base0",
+          "{a}": "right"
+        }
+      ],
+      "100015": [
+        {
+          "{A}": "081_playingcards/base2",
+          "{a}": "right"
+        }
+      ],
+      "100016": [
+        {
+          "{A}": "081_playingcards/base0",
+          "{a}": "left"
+        }
+      ],
+      "100017": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "left"
+        }
+      ],
+      "100018": [
+        {
+          "{A}": "081_playingcards/base2",
+          "{a}": "left"
+        }
+      ],
+      "100019": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "right"
+        }
+      ],
+      "100020": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "left"
+        }
+      ],
+      "100021": [
+        {
+          "{A}": "081_playingcards/base2",
+          "{a}": "left"
+        }
+      ],
+      "100022": [
+        {
+          "{A}": "081_playingcards/base2",
+          "{a}": "left"
+        }
+      ],
+      "100023": [
+        {
+          "{A}": "081_playingcards/base2",
+          "{a}": "right"
+        }
+      ],
+      "100024": [
+        {
+          "{A}": "081_playingcards/base2",
+          "{a}": "left"
+        }
+      ],
+      "100025": [
+        {
+          "{A}": "081_playingcards/base0",
+          "{a}": "left"
+        }
+      ],
+      "100026": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "left"
+        }
+      ],
+      "100027": [
+        {
+          "{A}": "081_playingcards/base2",
+          "{a}": "left"
+        }
+      ],
+      "100028": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "left"
+        }
+      ],
+      "100029": [
+        {
+          "{A}": "081_playingcards/base0",
+          "{a}": "left"
+        }
+      ],
+      "100030": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "right"
+        }
+      ],
+      "100031": [
+        {
+          "{A}": "081_playingcards/base0",
+          "{a}": "right"
+        }
+      ],
+      "100032": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "left"
+        }
+      ],
+      "100033": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "right"
+        }
+      ],
+      "100034": [
+        {
+          "{A}": "081_playingcards/base0",
+          "{a}": "right"
+        }
+      ],
+      "100035": [
+        {
+          "{A}": "081_playingcards/base0",
+          "{a}": "left"
+        }
+      ],
+      "100036": [
+        {
+          "{A}": "081_playingcards/base2",
+          "{a}": "right"
+        }
+      ],
+      "100037": [
+        {
+          "{A}": "081_playingcards/base2",
+          "{a}": "right"
+        }
+      ],
+      "100038": [
+        {
+          "{A}": "081_playingcards/base0",
+          "{a}": "left"
+        }
+      ],
+      "100039": [
+        {
+          "{A}": "081_playingcards/base2",
+          "{a}": "left"
+        }
+      ],
+      "100040": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "right"
+        }
+      ],
+      "100041": [
+        {
+          "{A}": "081_playingcards/base0",
+          "{a}": "left"
+        }
+      ],
+      "100042": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "left"
+        }
+      ],
+      "100043": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "left"
+        }
+      ],
+      "100044": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "right"
+        }
+      ],
+      "100045": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "left"
+        }
+      ],
+      "100046": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "left"
+        }
+      ],
+      "100047": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "right"
+        }
+      ],
+      "100048": [
+        {
+          "{A}": "081_playingcards/base0",
+          "{a}": "right"
+        }
+      ],
+      "100049": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "left"
+        }
+      ],
+      "100050": [
+        {
+          "{A}": "081_playingcards/base2",
+          "{a}": "left"
+        }
+      ],
+      "100051": [
+        {
+          "{A}": "081_playingcards/base0",
+          "{a}": "left"
+        }
+      ],
+      "100052": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "right"
+        }
+      ],
+      "100053": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "right"
+        }
+      ],
+      "100054": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "right"
+        }
+      ],
+      "100055": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "left"
+        }
+      ],
+      "100056": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "left"
+        }
+      ],
+      "100057": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "right"
+        }
+      ],
+      "100058": [
+        {
+          "{A}": "081_playingcards/base0",
+          "{a}": "right"
+        }
+      ],
+      "100059": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "right"
+        }
+      ],
+      "100060": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "left"
+        }
+      ],
+      "100061": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "right"
+        }
+      ],
+      "100062": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "left"
+        }
+      ],
+      "100063": [
+        {
+          "{A}": "081_playingcards/base0",
+          "{a}": "right"
+        }
+      ],
+      "100064": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "left"
+        }
+      ],
+      "100065": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "left"
+        }
+      ],
+      "100066": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "right"
+        }
+      ],
+      "100067": [
+        {
+          "{A}": "081_playingcards/base0",
+          "{a}": "right"
+        }
+      ],
+      "100068": [
+        {
+          "{A}": "081_playingcards/base2",
+          "{a}": "right"
+        }
+      ],
+      "100069": [
+        {
+          "{A}": "081_playingcards/base2",
+          "{a}": "right"
+        }
+      ],
+      "100070": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "right"
+        }
+      ],
+      "100071": [
+        {
+          "{A}": "081_playingcards/base0",
+          "{a}": "right"
+        }
+      ],
+      "100072": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "left"
+        }
+      ],
+      "100073": [
+        {
+          "{A}": "081_playingcards/base0",
+          "{a}": "left"
+        }
+      ],
+      "100074": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "right"
+        }
+      ],
+      "100075": [
+        {
+          "{A}": "081_playingcards/base0",
+          "{a}": "right"
+        }
+      ],
+      "100076": [
+        {
+          "{A}": "081_playingcards/base0",
+          "{a}": "left"
+        }
+      ],
+      "100077": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "right"
+        }
+      ],
+      "100078": [
+        {
+          "{A}": "081_playingcards/base2",
+          "{a}": "left"
+        }
+      ],
+      "100079": [
+        {
+          "{A}": "081_playingcards/base0",
+          "{a}": "right"
+        }
+      ],
+      "100080": [
+        {
+          "{A}": "081_playingcards/base2",
+          "{a}": "right"
+        }
+      ],
+      "100081": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "left"
+        }
+      ],
+      "100082": [
+        {
+          "{A}": "081_playingcards/base2",
+          "{a}": "left"
+        }
+      ],
+      "100083": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "left"
+        }
+      ],
+      "100084": [
+        {
+          "{A}": "081_playingcards/base0",
+          "{a}": "left"
+        }
+      ],
+      "100085": [
+        {
+          "{A}": "081_playingcards/base2",
+          "{a}": "right"
+        }
+      ],
+      "100086": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "right"
+        }
+      ],
+      "100087": [
+        {
+          "{A}": "081_playingcards/base0",
+          "{a}": "left"
+        }
+      ],
+      "100088": [
+        {
+          "{A}": "081_playingcards/base0",
+          "{a}": "right"
+        }
+      ],
+      "100089": [
+        {
+          "{A}": "081_playingcards/base0",
+          "{a}": "left"
+        }
+      ],
+      "100090": [
+        {
+          "{A}": "081_playingcards/base0",
+          "{a}": "right"
+        }
+      ],
+      "100091": [
+        {
+          "{A}": "081_playingcards/base0",
+          "{a}": "left"
+        }
+      ],
+      "100092": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "right"
+        }
+      ],
+      "100093": [
+        {
+          "{A}": "081_playingcards/base0",
+          "{a}": "right"
+        }
+      ],
+      "100094": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "left"
+        }
+      ],
+      "100095": [
+        {
+          "{A}": "081_playingcards/base0",
+          "{a}": "left"
+        }
+      ],
+      "100096": [
+        {
+          "{A}": "081_playingcards/base2",
+          "{a}": "left"
+        }
+      ],
+      "100097": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "right"
+        }
+      ],
+      "100098": [
+        {
+          "{A}": "081_playingcards/base0",
+          "{a}": "right"
+        }
+      ],
+      "100099": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "left"
+        }
+      ]
+    }
+  },
+  "100000demo_randomized": {
+    "seeds": [
+      100000,
+      100001,
+      100003,
+      100004,
+      100005,
+      100007,
+      100008,
+      100009,
+      100011,
+      100012,
+      100013,
+      100016,
+      100017,
+      100019,
+      100020,
+      100021,
+      100023,
+      100024,
+      100025,
+      100026,
+      100027,
+      100028,
+      100029,
+      100030,
+      100031,
+      100032,
+      100035,
+      100036,
+      100038,
+      100039,
+      100040,
+      100041,
+      100043,
+      100044,
+      100045,
+      100047,
+      100048,
+      100049,
+      100050,
+      100051,
+      100052,
+      100053,
+      100054,
+      100055,
+      100056,
+      100058,
+      100059,
+      100060,
+      100061,
+      100062,
+      100063,
+      100064,
+      100065,
+      100066,
+      100067,
+      100069,
+      100070,
+      100071,
+      100072,
+      100073,
+      100074,
+      100077,
+      100078,
+      100079,
+      100080,
+      100081,
+      100082,
+      100083,
+      100084,
+      100085,
+      100086,
+      100087,
+      100088,
+      100089,
+      100090,
+      100091,
+      100092,
+      100094,
+      100095,
+      100096,
+      100097,
+      100100,
+      100101,
+      100102,
+      100103,
+      100105,
+      100106,
+      100109,
+      100110,
+      100112,
+      100114,
+      100115,
+      100116,
+      100117,
+      100118,
+      100119,
+      100120,
+      100121,
+      100122,
+      100124
+    ],
+    "episode_info": {
+      "100000": [
+        {
+          "{A}": "081_playingcards/base2",
+          "{a}": "right"
+        }
+      ],
+      "100001": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "left"
+        }
+      ],
+      "100003": [
+        {
+          "{A}": "081_playingcards/base2",
+          "{a}": "right"
+        }
+      ],
+      "100004": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "right"
+        }
+      ],
+      "100005": [
+        {
+          "{A}": "081_playingcards/base2",
+          "{a}": "right"
+        }
+      ],
+      "100007": [
+        {
+          "{A}": "081_playingcards/base0",
+          "{a}": "left"
+        }
+      ],
+      "100008": [
+        {
+          "{A}": "081_playingcards/base2",
+          "{a}": "right"
+        }
+      ],
+      "100009": [
+        {
+          "{A}": "081_playingcards/base2",
+          "{a}": "left"
+        }
+      ],
+      "100011": [
+        {
+          "{A}": "081_playingcards/base2",
+          "{a}": "left"
+        }
+      ],
+      "100012": [
+        {
+          "{A}": "081_playingcards/base2",
+          "{a}": "left"
+        }
+      ],
+      "100013": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "left"
+        }
+      ],
+      "100016": [
+        {
+          "{A}": "081_playingcards/base2",
+          "{a}": "left"
+        }
+      ],
+      "100017": [
+        {
+          "{A}": "081_playingcards/base2",
+          "{a}": "left"
+        }
+      ],
+      "100019": [
+        {
+          "{A}": "081_playingcards/base2",
+          "{a}": "left"
+        }
+      ],
+      "100020": [
+        {
+          "{A}": "081_playingcards/base0",
+          "{a}": "right"
+        }
+      ],
+      "100021": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "left"
+        }
+      ],
+      "100023": [
+        {
+          "{A}": "081_playingcards/base0",
+          "{a}": "left"
+        }
+      ],
+      "100024": [
+        {
+          "{A}": "081_playingcards/base2",
+          "{a}": "right"
+        }
+      ],
+      "100025": [
+        {
+          "{A}": "081_playingcards/base0",
+          "{a}": "left"
+        }
+      ],
+      "100026": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "left"
+        }
+      ],
+      "100027": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "right"
+        }
+      ],
+      "100028": [
+        {
+          "{A}": "081_playingcards/base0",
+          "{a}": "right"
+        }
+      ],
+      "100029": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "left"
+        }
+      ],
+      "100030": [
+        {
+          "{A}": "081_playingcards/base0",
+          "{a}": "right"
+        }
+      ],
+      "100031": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "left"
+        }
+      ],
+      "100032": [
+        {
+          "{A}": "081_playingcards/base2",
+          "{a}": "left"
+        }
+      ],
+      "100035": [
+        {
+          "{A}": "081_playingcards/base2",
+          "{a}": "right"
+        }
+      ],
+      "100036": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "right"
+        }
+      ],
+      "100038": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "right"
+        }
+      ],
+      "100039": [
+        {
+          "{A}": "081_playingcards/base2",
+          "{a}": "right"
+        }
+      ],
+      "100040": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "right"
+        }
+      ],
+      "100041": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "right"
+        }
+      ],
+      "100043": [
+        {
+          "{A}": "081_playingcards/base2",
+          "{a}": "right"
+        }
+      ],
+      "100044": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "right"
+        }
+      ],
+      "100045": [
+        {
+          "{A}": "081_playingcards/base2",
+          "{a}": "right"
+        }
+      ],
+      "100047": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "left"
+        }
+      ],
+      "100048": [
+        {
+          "{A}": "081_playingcards/base0",
+          "{a}": "right"
+        }
+      ],
+      "100049": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "right"
+        }
+      ],
+      "100050": [
+        {
+          "{A}": "081_playingcards/base2",
+          "{a}": "right"
+        }
+      ],
+      "100051": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "left"
+        }
+      ],
+      "100052": [
+        {
+          "{A}": "081_playingcards/base2",
+          "{a}": "left"
+        }
+      ],
+      "100053": [
+        {
+          "{A}": "081_playingcards/base2",
+          "{a}": "left"
+        }
+      ],
+      "100054": [
+        {
+          "{A}": "081_playingcards/base0",
+          "{a}": "right"
+        }
+      ],
+      "100055": [
+        {
+          "{A}": "081_playingcards/base2",
+          "{a}": "right"
+        }
+      ],
+      "100056": [
+        {
+          "{A}": "081_playingcards/base2",
+          "{a}": "right"
+        }
+      ],
+      "100058": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "left"
+        }
+      ],
+      "100059": [
+        {
+          "{A}": "081_playingcards/base2",
+          "{a}": "left"
+        }
+      ],
+      "100060": [
+        {
+          "{A}": "081_playingcards/base0",
+          "{a}": "right"
+        }
+      ],
+      "100061": [
+        {
+          "{A}": "081_playingcards/base2",
+          "{a}": "left"
+        }
+      ],
+      "100062": [
+        {
+          "{A}": "081_playingcards/base0",
+          "{a}": "right"
+        }
+      ],
+      "100063": [
+        {
+          "{A}": "081_playingcards/base2",
+          "{a}": "left"
+        }
+      ],
+      "100064": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "right"
+        }
+      ],
+      "100065": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "left"
+        }
+      ],
+      "100066": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "right"
+        }
+      ],
+      "100067": [
+        {
+          "{A}": "081_playingcards/base0",
+          "{a}": "left"
+        }
+      ],
+      "100069": [
+        {
+          "{A}": "081_playingcards/base2",
+          "{a}": "right"
+        }
+      ],
+      "100070": [
+        {
+          "{A}": "081_playingcards/base0",
+          "{a}": "left"
+        }
+      ],
+      "100071": [
+        {
+          "{A}": "081_playingcards/base0",
+          "{a}": "left"
+        }
+      ],
+      "100072": [
+        {
+          "{A}": "081_playingcards/base2",
+          "{a}": "right"
+        }
+      ],
+      "100073": [
+        {
+          "{A}": "081_playingcards/base0",
+          "{a}": "right"
+        }
+      ],
+      "100074": [
+        {
+          "{A}": "081_playingcards/base0",
+          "{a}": "left"
+        }
+      ],
+      "100077": [
+        {
+          "{A}": "081_playingcards/base2",
+          "{a}": "left"
+        }
+      ],
+      "100078": [
+        {
+          "{A}": "081_playingcards/base0",
+          "{a}": "left"
+        }
+      ],
+      "100079": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "left"
+        }
+      ],
+      "100080": [
+        {
+          "{A}": "081_playingcards/base2",
+          "{a}": "right"
+        }
+      ],
+      "100081": [
+        {
+          "{A}": "081_playingcards/base2",
+          "{a}": "right"
+        }
+      ],
+      "100082": [
+        {
+          "{A}": "081_playingcards/base0",
+          "{a}": "right"
+        }
+      ],
+      "100083": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "left"
+        }
+      ],
+      "100084": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "left"
+        }
+      ],
+      "100085": [
+        {
+          "{A}": "081_playingcards/base2",
+          "{a}": "left"
+        }
+      ],
+      "100086": [
+        {
+          "{A}": "081_playingcards/base0",
+          "{a}": "right"
+        }
+      ],
+      "100087": [
+        {
+          "{A}": "081_playingcards/base0",
+          "{a}": "right"
+        }
+      ],
+      "100088": [
+        {
+          "{A}": "081_playingcards/base2",
+          "{a}": "left"
+        }
+      ],
+      "100089": [
+        {
+          "{A}": "081_playingcards/base2",
+          "{a}": "right"
+        }
+      ],
+      "100090": [
+        {
+          "{A}": "081_playingcards/base2",
+          "{a}": "right"
+        }
+      ],
+      "100091": [
+        {
+          "{A}": "081_playingcards/base2",
+          "{a}": "right"
+        }
+      ],
+      "100092": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "right"
+        }
+      ],
+      "100094": [
+        {
+          "{A}": "081_playingcards/base2",
+          "{a}": "left"
+        }
+      ],
+      "100095": [
+        {
+          "{A}": "081_playingcards/base0",
+          "{a}": "right"
+        }
+      ],
+      "100096": [
+        {
+          "{A}": "081_playingcards/base0",
+          "{a}": "right"
+        }
+      ],
+      "100097": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "left"
+        }
+      ],
+      "100100": [
+        {
+          "{A}": "081_playingcards/base0",
+          "{a}": "right"
+        }
+      ],
+      "100101": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "left"
+        }
+      ],
+      "100102": [
+        {
+          "{A}": "081_playingcards/base0",
+          "{a}": "right"
+        }
+      ],
+      "100103": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "left"
+        }
+      ],
+      "100105": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "right"
+        }
+      ],
+      "100106": [
+        {
+          "{A}": "081_playingcards/base2",
+          "{a}": "right"
+        }
+      ],
+      "100109": [
+        {
+          "{A}": "081_playingcards/base2",
+          "{a}": "left"
+        }
+      ],
+      "100110": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "left"
+        }
+      ],
+      "100112": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "left"
+        }
+      ],
+      "100114": [
+        {
+          "{A}": "081_playingcards/base0",
+          "{a}": "right"
+        }
+      ],
+      "100115": [
+        {
+          "{A}": "081_playingcards/base2",
+          "{a}": "left"
+        }
+      ],
+      "100116": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "left"
+        }
+      ],
+      "100117": [
+        {
+          "{A}": "081_playingcards/base0",
+          "{a}": "left"
+        }
+      ],
+      "100118": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "right"
+        }
+      ],
+      "100119": [
+        {
+          "{A}": "081_playingcards/base0",
+          "{a}": "right"
+        }
+      ],
+      "100120": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "left"
+        }
+      ],
+      "100121": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "left"
+        }
+      ],
+      "100122": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "right"
+        }
+      ],
+      "100124": [
+        {
+          "{A}": "081_playingcards/base1",
+          "{a}": "left"
+        }
+      ]
+    }
+  }
+}

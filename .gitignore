@@ -1,0 +1,82 @@
+# ---- Python / build artifacts ----
+*.egg-info/
+*.pyc
+*.py[cod]
+__pycache__/
+.DS_Store
+build/
+dist/
+*.so
+_C.cpython-38-x86_64-linux-gnu.so
+_C.cpython-39-x86_64-linux-gnu.so
+
+# ---- Editor / IDE ----
+.vscode/
+.cache/
+
+# ---- Run outputs / logs ----
+nohup.out
+output/
+outputs/
+wandb/
+logs/
+debug_actions/
+
+# ---- Generic debug/test media ----
+*.npy
+*.html
+output.gif
+output.mp4
+output.png
+debug.png
+debug.mp4
+debug.gif
+test.gif
+test.mp4
+test.png
+test_depth.mp4
+trajectory_video.gif
+trajectory_video.mp4
+trajectory_images/
+
+# ---- Personal / local-only files ----
+personal_TASK.md
+easytrain.sh
+run_3seed.sh
+Dockerfile
+dp3_training_environment.yml
+evaluation_benchmark_env.yml
+policy_training_env.yml
+*_temp.xml
+
+# ---- R3D: downloaded weights ----
+R3D/pretrain_weight/
+
+# ---- R3D: datasets and HF cache ----
+R3D/data/*.zarr/
+R3D/data/.cache/
+R3D/data/.gitattributes
+R3D/data/outputs/
+R3D/data/*.h5
+# R3D/data/
+
+# ---- R3D: build artifacts ----
+R3D/r3d.egg-info/
+
+# ---- R3D: large env assets and generated eval artifacts ----
+R3D/r3d/env/robotwin2/assets/__MACOSX
+R3D/r3d/env/robotwin2/assets/.huggingface
+R3D/r3d/env/robotwin2/assets/background_texture
+R3D/r3d/env/robotwin2/assets/embodiments
+R3D/r3d/env/robotwin2/assets/objects
+R3D/r3d/env/robotwin2/envs/curobo/
+R3D/r3d/env/robotwin2/eval_video/
+# R3D/r3d/env/robotwin2/seeds_list/
+
+# ---- Legacy third_party binary assets ----
+third_party/VRL3/vrl3_ckpts.zip
+third_party/dexart-release/dexart_assets.zip
+
+# ---- Misc large/one-off archives ----
+*.zip
+!third_party/**/*.zip.keep  # escape hatch placeholder; remove if unused
