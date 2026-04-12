@@ -23,6 +23,10 @@
   <img src="R3D_figure.png" alt="R3D" width="100%">
 </div>
 
+## Real Robot Deployment
+
+For real robot deployment instructions, please refer to [REAL_ROBOT_DEPLOYMENT.md](./REAL_ROBOT_DEPLOYMENT.md).
+
 ## Installation
 
 1.Create a conda env
