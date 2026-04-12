@@ -1,0 +1,37 @@
+name: real_task_1
+
+shape_meta: &shape_meta
+  # acceptable types: rgb, low_dim
+  obs:
+    point_cloud:
+      shape: [8192, 6]
+      type: point_cloud
+    agent_pos:
+      shape: [7]
+      type: low_dim
+  action:
+    shape: [7]
+
+# 真机数据训练不需要 env_runner(不进行仿真评估)
+# 显式设置为 null,训练代码会跳过评估步骤
+env_runner: null
+
+dataset:
+  _target_: diffusion_policy_3d.dataset.robotwin_dataset.RobotwinDataset
+  zarr_path: /2022533116/boyi/Multi-task-3D-Diffusion-Policy/data/task1-50.zarr
+  horizon: ${horizon}
+  pad_before: ${eval:'${n_obs_steps}-1'}
+  pad_after: ${eval:'${n_action_steps}-1'}
+  seed: 42
+  val_ratio: 0.02
+  max_train_episodes: null
+  use_data_augmentation: ${data_augmentation.use_augmentation}
+  pc_xyz_noise_std: ${data_augmentation.pc_xyz_noise_std}
+  pc_rgb_noise_std: ${data_augmentation.pc_rgb_noise_std}
+  agent_pos_noise_std: ${data_augmentation.agent_pos_noise_std}
+  use_endpose: false
+  # Color jitter parameters
+  use_color_jitter: ${data_augmentation.use_color_jitter}
+  brightness_range: ${data_augmentation.brightness_range}
+  contrast_range: ${data_augmentation.contrast_range}
+  saturation_range: ${data_augmentation.saturation_range}
