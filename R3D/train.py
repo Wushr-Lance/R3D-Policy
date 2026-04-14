@@ -358,7 +358,7 @@ class TrainDP3Workspace:
             policy.eval()
 
             # run rollout (only on main process)
-            if (self.epoch % cfg.training.rollout_every) == 0 and (self.epoch == 0) and RUN_ROLLOUT and env_runner is not None and is_main_process():
+            if (self.epoch % cfg.training.rollout_every) == 0 and (self.epoch != 0) and RUN_ROLLOUT and env_runner is not None and is_main_process():
                 t3 = time.time()
                 task_config = getattr(cfg, 'setting', None)
                 runner_log = env_runner.run(policy, self.epoch, task_config=task_config)
