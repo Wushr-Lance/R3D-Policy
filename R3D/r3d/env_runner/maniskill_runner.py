@@ -59,6 +59,12 @@ class ManiskillRunner(BaseRunner):
         all_success_rates = []
         env = self.env
 
+        # Reset per-run stats on the persistent env so counts don't carry over
+        # between eval rounds. The underlying SAPIEN scene is kept alive — we
+        # must not call close() between rounds, otherwise the next reset() will
+        # hit a NoneType scene in _clear_sim_state.
+        env.reset_stats()
+
         for episode_idx in range(self.eval_episodes):
             # start rollout
             obs = env.reset(seed=episode_idx + 100000)
@@ -92,7 +98,10 @@ class ManiskillRunner(BaseRunner):
             all_success_rates.append(is_success)
 
 
-        final_success_num, final_eval_num = env.close_env()
+        # IMPORTANT: do NOT call env.close_env() here. The runner is created
+        # once and reused for every eval round; closing would destroy the
+        # SAPIEN scene and the next reset() would crash in _clear_sim_state.
+        final_success_num, final_eval_num = env.get_stats()
 
         # Create log data
         log_data = {

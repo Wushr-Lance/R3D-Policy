@@ -163,6 +163,13 @@ class MultiStepWrapper():
         for k, v in self.info.items():
             result[k] = list(v)
         return result
+    def reset_stats(self):
+        self.env.reset_stats()
+
+    def get_stats(self):
+        final_success_num, final_eval_num = self.env.get_stats()
+        return final_success_num, final_eval_num
+
     def close_env(self):
         final_success_num, final_eval_num =self.env.close()
         return final_success_num, final_eval_num

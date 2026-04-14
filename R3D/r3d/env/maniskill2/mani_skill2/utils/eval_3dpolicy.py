@@ -193,6 +193,25 @@ class Maniskill2Env():
         
         return obs, self.state, self.success
 
+    def reset_stats(self):
+        """Reset per-run success counters without tearing down the underlying
+        SAPIEN scene. Called at the start of each evaluation round so that the
+        env instance can be reused across multiple calls to the runner."""
+        self.success_num = 0
+        self.eval_num = 0
+        if self.env_name == 'PegInsertionSide-v0':
+            self.pre_inserted_success = 0
+            self.is_grasped_success = 0
+
+    def get_stats(self):
+        """Return current-run stats and print a summary, without closing the
+        underlying gym env. Use this between eval rounds."""
+        print()
+        print(f"\033[31mFinal Success Rate: {self.success_num}/{self.eval_num}\033[0m")
+        if self.env_name == 'PegInsertionSide-v0':
+            print(f"Final Pre-inserted Success Rate: {self.pre_inserted_success}/{self.eval_num}, Final Is-grasped Success Rate: {self.is_grasped_success}/{self.eval_num}")
+        return self.success_num, self.eval_num
+
     def close(self):
         self.env.close()
         print()
