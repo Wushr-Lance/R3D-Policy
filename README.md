@@ -65,9 +65,16 @@ hf download eddie-cui/r3d-weights --local-dir ./R3D/pretrain_weight
 
 1.RoboTwin
 ```bash
-bash scripts/train_robotwin2_single.sh r3d_robotwin2 place_shoe 0000 0 0
-# You only need to change GPU ID from single like "0" to multiple like "0,1" or "0,1,2"
-bash scripts/train_robotwin2_single.sh r3d_robotwin2 place_shoe 0000 0 0,1
+conda activate r3d && bash scripts/train_robotwin2_single.sh r3d_robotwin2 place_shoe 0000 0 0
+# To enable DDP multi-GPU training, you only need to change GPU ID from single like "0" to multiple like "0,1" or "0,1,2"
+conda activate r3d && bash scripts/train_robotwin2_single.sh r3d_robotwin2 place_shoe 0000 0 0,1
+```
+
+2.ManiSkill
+```bash
+conda activate r3d_maniskill && bash scripts/train_maniskill_single.sh r3d_maniskill PickCube 0000 0 0
+# To enable DDP multi-GPU training, you only need to change GPU ID from single like "0" to multiple like "0,1" or "0,1,2"
+conda activate r3d_maniskill && bash scripts/train_maniskill_single.sh r3d_maniskill PickCube 0000 0 0,1
 ```
 
 ---
