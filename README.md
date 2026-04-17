@@ -1,22 +1,21 @@
 # R3D: Revisiting 3D Policy Learning
 <a href="https://r3d-policy.github.io"><strong>Project Page</strong></a>
   |
-  <a href="https://"><strong>Paper</strong></a>
+  <a href="https://arxiv.org/pdf/2604.15281"><strong>Paper</strong></a>
   |
-  <a href="https://"><strong>Twitter</strong></a> | <a href="Place Holder"><strong>YouTube</strong></a>
+  <a href="https://"><strong>Twitter</strong></a> | <a href="https://youtu.be/659pPYQWuqA"><strong>YouTube</strong></a>
 
-  <a href="https:// /">Zhengdong Hong*</a>, 
-  <a href="https:// /">Shenrui Wu*</a>, 
+  <a href="https://hongzhengdong.github.io/">Zhengdong Hong*</a>, 
+  <a href="https://wushr-lance.github.io/">Shenrui Wu*</a>, 
   <a href="https:// /">Haozhe Cui*</a>, 
-  <a href="https:// /">Shiqi Yang</a>, 
   <a href="https:// /">Boyi Zhao</a>, 
   <a href="https:// /">Ran Ji</a>, 
   <a href="https:// /">Yiyang He</a>, 
   <a href="https:// /">Hangxing Zhang</a>, 
   <a href="https:// /">Zundong Ke</a>, 
-  <a href="https:// /">Jun Wang</a>, 
-  <a href="https:// /">Guofeng Zhang</a>
-  <a href="https:// /">Jiayuan Gu†</a>
+  <a href="https://wang59695487.github.io/">Jun Wang</a>, 
+  <a href="http://www.cad.zju.edu.cn/home/gfzhang/">Guofeng Zhang</a>
+  <a href="https://jiayuan-gu.github.io/">Jiayuan Gu†</a>
 
 
 <div align="center">
