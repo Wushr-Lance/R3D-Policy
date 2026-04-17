@@ -10,11 +10,11 @@ shape_meta: &shape_meta
       shape: [9]
       type: low_dim
   action: 
-    shape: [8] # 15 when you use auxiliary task; 8 otherwise
+    shape: [8] # 15 when you use auxiliary task (EE prediction); 8 otherwise
 
 env_runner:
   _target_: r3d.env_runner.maniskill_runner.ManiskillRunner
-  eval_episodes: 400
+  eval_episodes: 100
   n_obs_steps: ${n_obs_steps}
   n_action_steps: ${n_action_steps}
   fps: 10

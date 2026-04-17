@@ -1,11 +1,11 @@
 defaults:
   - task: robotwin2_demo_task
 
-name: train_dp3_uni3d
+name: train_r3d_robotwin2
 
 task_name: null
 shape_meta: ${task.shape_meta}
-exp_name: "dp3"
+exp_name: "r3d_robotwin2"
 setting: null
 
 # horizon: 4
@@ -21,7 +21,7 @@ obs_as_global_cond: True
 policy:
   _target_: r3d.policy.dp3.DP3
   use_point_crop: true
-  condition_type: one_way_transformer
+  condition_type: one_way_transformer # Options: "film", "one_way_transformer"
   use_down_condition: true
   use_mid_condition: true
   use_up_condition: true
@@ -65,7 +65,7 @@ policy:
   shape_meta: ${shape_meta}
 
   use_pc_color: true
-  pointnet_type: "uni3d_pretrained"
+  pointnet_type: "uni3d"
 
 
   pointcloud_encoder_cfg:
@@ -90,7 +90,8 @@ policy:
     random_noise_scale: 0     # Noise scale (0 = no noise)
     shuffle_output: true      # Shuffle output order
   
-  use_target_ee: false
+  use_target_ee: false # remember change action.shape in {task}.yaml when enabling ee prediction
+  cat_on_token: false
 
 data_augmentation:
   use_augmentation: true      # Enable data augmentation
@@ -161,11 +162,11 @@ logging:
   id: null
   mode: online
   name: ${exp_name}
-  project: dp3_uni3d_pretrained
+  project: r3d
   resume: true
   tags:
-  - dp3
-  - uni3d_pretrained
+  - r3d
+  - robotwin
 
 checkpoint:
   save_ckpt: False # if True, save checkpoint every checkpoint_every

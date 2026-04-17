@@ -10,7 +10,7 @@ shape_meta: &shape_meta
       shape: [14]
       type: low_dim
   action: 
-    shape: [14] # 28 when you use auxiliary task; 14 otherwise
+    shape: [14] # 28 when you use auxiliary task (EE prediction); 14 otherwise
 
 env_runner:
   _target_: r3d.env_runner.robotwin2_runner.RoboTwin2Runner
