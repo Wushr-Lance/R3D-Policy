@@ -20,8 +20,10 @@
 
 
 <div align="center">
-  <img src="R3D_figure.png" alt="R3D" width="100%">
+  <img src="R3D.png" alt="R3D" width="100%">
 </div>
+
+---
 
 ## Installation
 
