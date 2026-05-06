@@ -61,13 +61,13 @@ cd ../../../..
 It might take some time, be patient!
 
 ```bash
-hf download eddie-cui/r3d --repo-type dataset --local-dir ./R3D/data
+huggingface-cli download eddie-cui/r3d --repo-type dataset --local-dir ./R3D/data
 ```
 
 3.Download pre-trained weights of vision encoder 
 
 ```bash
-hf download eddie-cui/r3d-weights --local-dir ./R3D/pretrain_weight
+huggingface-cli download eddie-cui/r3d-weights --local-dir ./R3D/pretrain_weight
 ```
 
 Pre-processed data and pre-trained weights of vision encoder are available on <a href="https://huggingface.co/datasets/eddie-cui/r3d">data</a> and <a href="https://huggingface.co/datasets/eddie-cui/r3d">weights</a>.
@@ -130,3 +130,18 @@ Coming soon!
 ## 🙏 Acknowledgements
 
 Code borrows heavily from [3D-Diffusion-Policy](https://github.com/YanjieZe/3D-Diffusion-Policy).
+
+---
+
+## Citation
+
+If you find our work useful, please consider citing:
+
+```
+@article{hong2026r3d,
+  title={R3D: Revisiting 3D Policy Learning},
+  author={Hong, Zhengdong and Wu, Shenrui and Cui, Haozhe and Zhao, Boyi and Ji, Ran and He, Yiyang and Zhang, Hangxing and Ke, Zundong and Wang, Jun and Zhang, Guofeng and others},
+  journal={arXiv preprint arXiv:2604.15281},
+  year={2026}
+}
+```
