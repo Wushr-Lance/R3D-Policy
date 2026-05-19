@@ -355,7 +355,7 @@ class DP3Encoder(nn.Module):
 
 
 # =============================================================================
-# Uni3D encoder components
+# PointSAM encoder components (adapted from Uni3D)
 # =============================================================================
 
 def fps(data, number, use_random=True, random_start=True, random_noise_scale=0, shuffle_output=True):
@@ -422,21 +422,6 @@ def fps(data, number, use_random=True, random_start=True, random_noise_scale=0, 
     
     return fps_data
 
-
-def knn_point(nsample, xyz, new_xyz):
-    """
-    Input:
-        nsample: max sample number in local region
-        xyz: all points, [B, N, C]
-        new_xyz: query points, [B, S, C]
-    Return:
-        group_idx: grouped points index, [B, S, nsample]
-    """
-    sqrdists = square_distance(new_xyz, xyz)
-    _, group_idx = torch.topk(sqrdists, nsample, dim=-1, largest=False, sorted=False)
-    return group_idx
-
-
 def square_distance(src, dst):
     """
     Calculate Euclid distance between each two points.
@@ -497,48 +482,6 @@ class PatchDropout(nn.Module):
 
         return x
 
-
-class Group(nn.Module):
-    """Point cloud grouping module with configurable FPS randomness."""
-    def __init__(self, num_group, group_size, fps_random_config=None):
-        super().__init__()
-        self.num_group = num_group
-        self.group_size = group_size
-        self.fps_random_config = fps_random_config or {}
-        cprint(f"[Group] FPS randomness config: {fps_random_config}", "cyan")
-
-    def forward(self, xyz, color):
-        '''
-            input: B N 3
-            ---------------------------
-            output: B G M 3
-            center : B G 3
-        '''
-        batch_size, num_points, _ = xyz.shape
-        
-        # Enhanced FPS with randomness for centers
-        center = fps(xyz, self.num_group, **self.fps_random_config) # B G 3
-        
-        # knn to get the neighborhood
-        idx = knn_point(self.group_size, xyz, center) # B G M
-        assert idx.size(1) == self.num_group
-        assert idx.size(2) == self.group_size
-        idx_base = torch.arange(0, batch_size, device=xyz.device).view(-1, 1, 1) * num_points
-        idx = idx + idx_base
-        idx = idx.view(-1)
-        neighborhood = xyz.view(batch_size * num_points, -1)[idx, :]
-        neighborhood = neighborhood.view(batch_size, self.num_group, self.group_size, 3).contiguous()
-
-        neighborhood_color = color.view(batch_size * num_points, -1)[idx, :]
-        neighborhood_color = neighborhood_color.view(batch_size, self.num_group, self.group_size, 3).contiguous()
-
-        # normalize
-        neighborhood = neighborhood - center.unsqueeze(2)
-
-        features = torch.cat((neighborhood, neighborhood_color), dim=-1)
-        return neighborhood, center, features
-
-
 class KNNGrouper(nn.Module):
     """Group points based on K nearest neighbors.
 
@@ -596,33 +539,6 @@ class KNNGrouper(nn.Module):
             features=group_feats, centers=centers, knn_idx=knn_idx
         )
 
-
-class NNGrouper(nn.Module):
-    """Group points based on the nearest neighbors."""
-
-    def __init__(self, num_groups, fps_random_config=None):
-        super().__init__()
-        self.num_groups = num_groups
-        self.fps_random_config = fps_random_config or {}
-        cprint(f"[Group] FPS randomness config: {fps_random_config}", "cyan")
-
-    def forward(self, xyz: torch.Tensor, features: torch.Tensor):
-        with torch.no_grad():
-            centers = fps(xyz, self.num_groups, **self.fps_random_config) # B G 3
-            _, nn_idx = knn_points(xyz, centers, 1)  # [B, N, 1]
-
-        # Compute the relative position of each point to its nearest center
-        nn_idx = nn_idx.squeeze(-1)
-        nbr_xyz = xyz - batch_index_select(centers, nn_idx, dim=1)  # [B, N, 3]
-
-        # Normalize the relative position
-        dist = torch.linalg.norm(nbr_xyz, dim=-1, keepdim=True, ord=2)
-        nbr_xyz = nbr_xyz / torch.clamp(dist, min=1e-8)
-
-        group_feats = torch.cat([nbr_xyz, dist, features], dim=-1)
-        return dict(features=group_feats, centers=centers, nn_idx=nn_idx)
-
-
 class PatchEncoder(nn.Module):
     """Encode point patches following the PointNet structure for segmentation."""
 
@@ -653,60 +569,6 @@ class PatchEncoder(nn.Module):
         x = self.conv2(x)  # [B, L, K, C_out]
         y = torch.max(x, dim=-2).values  # [B, L, C_out]
         return y
-
-
-
-class Block(nn.Module):
-    def __init__(self, in_channels, hidden_dim, out_channels):
-        super().__init__()
-        # Follow timm.layers.mlp
-        self.mlp = nn.Sequential(
-            nn.Linear(in_channels, hidden_dim),
-            nn.GELU(),
-            nn.LayerNorm(hidden_dim),
-            nn.Linear(hidden_dim, out_channels),
-        )
-        self.norm = nn.LayerNorm(out_channels)
-
-    def forward(self, x):
-        # PreLN. Follow timm.models.vision_transformer
-        return x + self.mlp(self.norm(x))
-
-
-class PatchEmbedNN(nn.Module):
-    def __init__(self, in_channels, hidden_dim, out_channels, num_patches, fps_random_config=None) -> None:
-        super().__init__()
-        self.in_channels = in_channels
-        self.out_channels = out_channels
-        hidden_dim = hidden_dim or out_channels
-        self.num_patches = num_patches
-        self.grouper = NNGrouper(num_patches, fps_random_config)
-        self.in_proj = nn.Linear(in_channels, hidden_dim)
-        self.blocks1 = nn.Sequential(
-            *[Block(hidden_dim, hidden_dim, hidden_dim) for _ in range(3)]
-        )
-        self.blocks2 = nn.Sequential(
-            *[Block(hidden_dim, hidden_dim, hidden_dim) for _ in range(3)]
-        )
-        self.norm = nn.LayerNorm(hidden_dim)
-        self.out_proj = nn.Linear(hidden_dim, out_channels)
-
-    def forward(self, coords: torch.tensor, features: torch.tensor):
-        patches = self.grouper(coords, features)
-        patch_features = patches["features"]  # [B, N, D]
-        nn_idx = patches["nn_idx"]  # [B, N]
-        x = self.in_proj(patch_features)
-        x = self.blocks1(x)  # [B, N, D]
-        y = x.new_zeros(x.shape[0], self.grouper.num_groups, x.shape[-1])
-        y.scatter_reduce_(
-            1, nn_idx.unsqueeze(-1).expand_as(x), x, "amax", include_self=False
-        )
-        x = self.blocks2(y)
-        x = self.norm(x)
-        x = self.out_proj(x)
-        patches["embeddings"] = x
-        return patches
-
 
 class PatchEmbed(nn.Module):
     def __init__(
@@ -772,42 +634,6 @@ def knn_points(
     else:
         knn_dist, knn_ind = torch.topk(distance, k, dim=2, largest=False, sorted=sorted)
     return knn_dist, knn_ind
-
-
-def batch_index_select(input, index, dim):
-    """The batched version of `torch.index_select`.
-
-    Args:
-        input (torch.Tensor): [B, ...]
-        index (torch.Tensor): [B, N] or [B]
-        dim (int): the dimension to index
-
-    """
-
-    if index.dim() == 1:
-        index = index.unsqueeze(1)
-        squeeze_dim = True
-    else:
-        assert (
-            index.dim() == 2
-        ), "index is expected to be 2-dim (or 1-dim), but {} received.".format(
-            index.dim()
-        )
-        squeeze_dim = False
-    assert input.size(0) == index.size(0), "Mismatched batch size: {} vs {}".format(
-        input.size(0), index.size(0)
-    )
-    views = [1 for _ in range(input.dim())]
-    views[0] = index.size(0)
-    views[dim] = index.size(1)
-    expand_shape = list(input.shape)
-    expand_shape[dim] = -1
-    index = index.view(views).expand(expand_shape)
-    out = torch.gather(input, dim, index)
-    if squeeze_dim:
-        out = out.squeeze(1)
-    return out
-
 
 class PositionEmbeddingRandom(nn.Module):
     """
