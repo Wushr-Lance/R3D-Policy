@@ -109,6 +109,7 @@ The following quick-reference table provides the key parameters within our confi
 conda activate r3d && bash scripts/train_robotwin2_single.sh r3d_robotwin2 place_shoe 0000 0 0
 # To enable DDP multi-GPU training, you only need to change GPU ID from single like "0" to multiple like "0,1" or "0,1,2"
 conda activate r3d && bash scripts/train_robotwin2_single.sh r3d_robotwin2 place_shoe 0000 0 0,1
+conda activate r3d && bash scripts/train_robotwin2_single.sh dp3_robotwin2 place_shoe 0000 0 0 # DP3 baseline
 ```
 
 2.ManiSkill

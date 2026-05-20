@@ -1,11 +1,11 @@
 defaults:
   - task: robotwin2_demo_task
 
-name: train_dp3
+name: train_dp3_robotwin2
 
 task_name: null
 shape_meta: ${task.shape_meta}
-exp_name: "dp3"
+exp_name: "dp3_robotwin2"
 setting: null
 
 # horizon: 4
@@ -76,6 +76,7 @@ policy:
     shuffle_output: true      # Shuffle output order
 
   use_target_ee: false
+  cat_on_token: false
 
 data_augmentation:
   use_augmentation: false      # Enable data augmentation
@@ -130,8 +131,8 @@ training:
   gradient_accumulate_every: 1
   use_ema: True
   use_bfloat16: True
-  rollout_every: 50
-  checkpoint_every: 50
+  rollout_every: 200
+  checkpoint_every: 200
   val_every: 1
   sample_every: 5
   max_train_steps: null
@@ -146,7 +147,7 @@ logging:
   id: null
   mode: online
   name: ${exp_name}
-  project: RoboTwin2.0-Evaluation
+  project: dp3
   resume: true
   tags:
   - dp3
