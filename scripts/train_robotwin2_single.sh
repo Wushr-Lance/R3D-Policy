@@ -10,7 +10,7 @@ config_name=${alg_name}
 setting="demo_clean"
 addition_info=${3}
 seed=${4}
-exp_name=${task_name}-${alg_name}-${setting}-${addition_info}
+exp_name=${task_name}-${alg_name}-${setting}-${addition_info}-${seed}
 
 # gpu_id=$(bash scripts/find_gpu.sh)
 gpu_id=${5}
