@@ -61,7 +61,10 @@ cd ../../../..
 It might take some time, be patient!
 
 ```bash
-huggingface-cli download eddie-cui/r3d --repo-type dataset --local-dir ./R3D/data
+sudo apt-get install git-lfs
+git lfs install
+git clone https://huggingface.co/datasets/eddie-cui/r3d R3D/data
+# huggingface-cli download eddie-cui/r3d --repo-type dataset --local-dir ./R3D/data
 ```
 
 3.Download pre-trained weights of vision encoder 
@@ -105,6 +108,9 @@ The following quick-reference table provides the key parameters within our confi
 ### Training Examples
 
 1.RoboTwin
+
+Seed checking will take some time when it is the first evaluation.
+
 ```bash
 conda activate r3d && bash scripts/train_robotwin2_single.sh r3d_robotwin2 place_shoe 0000 0 0
 # To enable DDP multi-GPU training, you only need to change GPU ID from single like "0" to multiple like "0,1" or "0,1,2"

@@ -48,7 +48,7 @@ pip install -r requirements.txt
 
 ```bash
 cd R3D/r3d/env/robotwin2/envs
-git clone https://github.com/NVlabs/curobo.git
+git clone --branch v0.7.8 --depth 1 https://github.com/NVlabs/curobo.git
 cd curobo
 pip install -e . --no-build-isolation
 cd ../../../../../..
@@ -101,7 +101,22 @@ if np.linalg.norm(delta_twist) < 1e-4 or not within_joint_limit:
 
 ---
 
-9.install ManiSkill
+9.adjust code in `curobo`
+
+This is following [This issue](https://github.com/NVlabs/curobo/issues/631)
+
+```
+# R3D/r3d/env/robotwin2/envs/curobo/src/curobo/geom/sdf/world_mesh.py line 67
+# remove `.torch`
+
+self._wp_device = wp.torch.device_from_torch(self.tensor_args.device)
+=>
+self._wp_device = wp.device_from_torch(self.tensor_args.device)
+```
+
+---
+
+10.install ManiSkill
 
 Because ManiSkill and RoboTwin use different versions of Sapien, running on the ManiSkill requires a separate conda environment.
 
