@@ -71,7 +71,7 @@ R3D/r3d/env/robotwin2/assets/embodiments
 R3D/r3d/env/robotwin2/assets/objects
 R3D/r3d/env/robotwin2/envs/curobo/
 R3D/r3d/env/robotwin2/eval_video/
-# R3D/r3d/env/robotwin2/seeds_list/
+R3D/r3d/env/robotwin2/seeds_list/
 
 # ---- Legacy third_party binary assets ----
 third_party/VRL3/vrl3_ckpts.zip

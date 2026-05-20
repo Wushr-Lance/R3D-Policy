@@ -79,16 +79,16 @@ try:
             )
 
             self.motion_gen = MotionGen(motion_gen_config)
-            # self.motion_gen.warmup()
-            # motion_gen_config = MotionGenConfig.load_from_robot_config(
-            #     self.yml_path,
-            #     world_config,
-            #     interpolation_dt=1 / 250,
-            #     num_trajopt_seeds=1,
-            #     num_graph_seeds=1,
-            # )
-            # self.motion_gen_batch = MotionGen(motion_gen_config)
-            # self.motion_gen_batch.warmup(batch=CONFIGS.ROTATE_NUM)
+            self.motion_gen.warmup()
+            motion_gen_config = MotionGenConfig.load_from_robot_config(
+                self.yml_path,
+                world_config,
+                interpolation_dt=1 / 250,
+                num_trajopt_seeds=1,
+                num_graph_seeds=1,
+            )
+            self.motion_gen_batch = MotionGen(motion_gen_config)
+            self.motion_gen_batch.warmup(batch=CONFIGS.ROTATE_NUM)
 
         def plan_path(
             self,
