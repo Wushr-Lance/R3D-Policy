@@ -1,0 +1,94 @@
+name: robotwin2_multitask
+
+task_entries: &task_entries
+  # - task_name: adjust_bottle
+  #   setting: demo_randomized
+  #   zarr_path: R3D/data/adjust_bottle-demo_randomized-50.zarr
+  - task_name: beat_block_hammer
+    setting: demo_clean
+    zarr_path: R3D/data/beat_block_hammer-demo_clean-50.zarr
+  # - task_name: beat_block_hammer
+  #   setting: demo_randomized
+  #   zarr_path: R3D/data/beat_block_hammer-demo_randomized-50.zarr
+  # - task_name: click_bell
+  #   setting: demo_clean
+  #   zarr_path: R3D/data/click_bell-demo_clean-50.zarr
+  # - task_name: hanging_mug
+  #   setting: demo_clean
+  #   zarr_path: R3D/data/hanging_mug-demo_clean-50.zarr
+  # - task_name: lift_pot
+  #   setting: demo_randomized
+  #   zarr_path: R3D/data/lift_pot-demo_randomized-50.zarr
+  - task_name: move_playingcard_away
+    setting: demo_clean
+    zarr_path: R3D/data/move_playingcard_away-demo_clean-50.zarr
+  - task_name: open_microwave
+    setting: demo_clean
+    zarr_path: R3D/data/open_microwave-demo_clean-50.zarr
+  # - task_name: open_microwave
+  #   setting: demo_randomized
+  #   zarr_path: R3D/data/open_microwave-demo_randomized-50.zarr
+  # - task_name: place_burger_fries
+  #   setting: demo_randomized
+  #   zarr_path: R3D/data/place_burger_fries-demo_randomized-50.zarr
+  - task_name: place_shoe
+    setting: demo_clean
+    zarr_path: R3D/data/place_shoe-demo_clean-50.zarr
+  # - task_name: press_stapler
+  #   setting: demo_randomized
+  #   zarr_path: R3D/data/press_stapler-demo_randomized-50.zarr
+  - task_name: turn_switch
+    setting: demo_clean
+    zarr_path: R3D/data/turn_switch-demo_clean-50.zarr
+
+shape_meta: &shape_meta
+  obs:
+    point_cloud:
+      shape: [1024, 6]
+      type: point_cloud
+    agent_pos:
+      shape: [14]
+      type: low_dim
+    task_onehot:
+      shape: [5] # number of tasks
+      type: low_dim
+  action:
+    shape: [14]
+
+env_runner:
+  _target_: r3d.env_runner.robotwin2_runner.RoboTwin2Runner
+  output_dir: ${hydra:run.dir}
+  task_name: null
+  task_entries: *task_entries
+  eval_task_name: ${eval_task_name}
+  seed: 0
+  eval_episodes: 100
+  max_steps: 2000
+  n_obs_steps: ${n_obs_steps}
+  n_action_steps: ${n_action_steps}
+  task_config: demo_clean
+  instruction_type: unseen
+  action_space_type: joint
+  head_camera_type: D435
+  save_video: true
+  tqdm_interval_sec: 5.0
+
+dataset:
+  _target_: r3d.dataset.multi_robotwin_dataset.MultiRobotwinDataset
+  tasks: *task_entries
+  horizon: ${horizon}
+  pad_before: ${eval:'${n_obs_steps}-1'}
+  pad_after: ${eval:'${n_action_steps}-1'}
+  seed: 42
+  val_ratio: 0.02
+  max_train_episodes: null
+  balanced_sampling: true
+  use_data_augmentation: ${data_augmentation.use_augmentation}
+  pc_xyz_noise_std: ${data_augmentation.pc_xyz_noise_std}
+  pc_rgb_noise_std: ${data_augmentation.pc_rgb_noise_std}
+  agent_pos_noise_std: ${data_augmentation.agent_pos_noise_std}
+  use_color_jitter: ${data_augmentation.use_color_jitter}
+  brightness_range: ${data_augmentation.brightness_range}
+  contrast_range: ${data_augmentation.contrast_range}
+  saturation_range: ${data_augmentation.saturation_range}
+  use_target_ee: ${policy.use_target_ee}

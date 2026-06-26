@@ -182,7 +182,6 @@ class DP3Encoder(nn.Module):
                  ):
         super().__init__()
         self.imagination_key = 'imagin_robot'
-        self.state_key = 'agent_pos'
         self.point_cloud_key = 'point_cloud'
         self.rgb_image_key = 'image'
         self.n_output_channels = out_channel
@@ -190,16 +189,20 @@ class DP3Encoder(nn.Module):
 
         self.use_imagined_robot = self.imagination_key in observation_space.keys()
         self.point_cloud_shape = observation_space[self.point_cloud_key]
-        self.state_shape = observation_space[self.state_key]
         if self.use_imagined_robot:
             self.imagination_shape = observation_space[self.imagination_key]
         else:
             self.imagination_shape = None
-            
-        
-        
+
+        ignored_obs_keys = {self.point_cloud_key, self.rgb_image_key, self.imagination_key}
+        self.low_dim_keys = [key for key in observation_space.keys() if key not in ignored_obs_keys]
+        if len(self.low_dim_keys) == 0:
+            raise RuntimeError("DP3Encoder requires at least one low-dimensional observation key")
+        self.low_dim_shapes = {key: observation_space[key] for key in self.low_dim_keys}
+
         cprint(f"[DP3Encoder] point cloud shape: {self.point_cloud_shape}", "yellow")
-        cprint(f"[DP3Encoder] state shape: {self.state_shape}", "yellow")
+        cprint(f"[DP3Encoder] low-dim keys: {self.low_dim_keys}", "yellow")
+        cprint(f"[DP3Encoder] low-dim shapes: {self.low_dim_shapes}", "yellow")
         cprint(f"[DP3Encoder] imagination point shape: {self.imagination_shape}", "yellow")
 
         self.use_pc_color = use_pc_color
@@ -208,8 +211,7 @@ class DP3Encoder(nn.Module):
         feature_mode = pointcloud_encoder_cfg.get('feature_mode', None)
         self.pc_encoder_extract_global_feature = feature_mode != 'pointsam'
         cprint(f"[DP3Encoder] extract_global_feature: {self.pc_encoder_extract_global_feature}", "yellow")
-        
-        # FPS randomness config - set defaults
+
         self.fps_random_config = fps_random_config or {
             'use_random': True,
             'random_start': True,
@@ -218,18 +220,19 @@ class DP3Encoder(nn.Module):
         }
 
         self.cat_on_token = cat_on_token
-        
-        # Support for Uni3D encoder
+        pc_output_dim = self.n_output_channels
+
         if pointnet_type == "pointnet":
+            pointnet_cfg = dict(pointcloud_encoder_cfg)
+            pointnet_cfg.setdefault('out_channels', out_channel)
             if use_pc_color:
-                pointcloud_encoder_cfg.in_channels = 6
-                self.extractor = PointNetEncoderXYZRGB(**pointcloud_encoder_cfg)
+                pointnet_cfg['in_channels'] = 6
+                self.extractor = PointNetEncoderXYZRGB(**pointnet_cfg)
             else:
-                pointcloud_encoder_cfg.in_channels = 3
-                self.extractor = PointNetEncoderXYZ(**pointcloud_encoder_cfg)
+                pointnet_cfg['in_channels'] = 3
+                self.extractor = PointNetEncoderXYZ(**pointnet_cfg)
         elif pointnet_type == "uni3d":
             cprint(f"[DP3Encoder] Using Uni3D encoder", "yellow")
-            # Default config for Uni3D encoder
             uni3d_config = {
                 'pc_model': 'eva02_large_patch14_448',
                 'pc_feat_dim': 1024,
@@ -243,22 +246,13 @@ class DP3Encoder(nn.Module):
                 'use_pretrained_weights': False,
                 'pretrained_weights_path': None,
             }
-            
-            # Override defaults with user-provided config
             if pointcloud_encoder_cfg:
                 uni3d_config.update(pointcloud_encoder_cfg)
-            
-            # Add FPS randomness config
             uni3d_config['fps_random_config'] = self.fps_random_config
-            
             self.extractor = Uni3DPointcloudEncoder(**uni3d_config)
-            
-            # Adjust output channels to match Uni3D output
-            self.n_output_channels = uni3d_config['embed_dim']
-            
+            pc_output_dim = uni3d_config['embed_dim']
         elif pointnet_type == "uni3d_pretrained":
             cprint(f"[DP3Encoder] Using pretrained Uni3D encoder", "yellow")
-            # Config for pretrained Uni3D encoder
             uni3d_config = {
                 'pc_model': 'eva02_large_patch14_448',
                 'pc_feat_dim': 1024,
@@ -272,22 +266,13 @@ class DP3Encoder(nn.Module):
                 'use_pretrained_weights': True,
                 'pretrained_weights_path': 'Uni3D_large/model.pt',
             }
-            
-            # Override defaults with user-provided config
             if pointcloud_encoder_cfg:
                 uni3d_config.update(pointcloud_encoder_cfg)
-            
-            # Add FPS randomness config
             uni3d_config['fps_random_config'] = self.fps_random_config
-            
             self.extractor = Uni3DPointcloudEncoder(**uni3d_config)
-            
-            # Adjust output channels to match Uni3D output
-            self.n_output_channels = uni3d_config['embed_dim']
-
+            pc_output_dim = uni3d_config['embed_dim']
         else:
             raise NotImplementedError(f"pointnet_type: {pointnet_type}")
-
 
         if len(state_mlp_size) == 0:
             raise RuntimeError(f"State mlp size is empty")
@@ -296,51 +281,54 @@ class DP3Encoder(nn.Module):
         else:
             net_arch = state_mlp_size[:-1]
         output_dim = state_mlp_size[-1]
-        
+
+        self.low_dim_mlps = nn.ModuleDict()
+        for key in self.low_dim_keys:
+            shape = self.low_dim_shapes[key]
+            if len(shape) != 1:
+                raise RuntimeError(f"Low-dimensional obs '{key}' must be rank-1, got {shape}")
+            self.low_dim_mlps[key] = nn.Sequential(
+                *create_mlp(shape[0], output_dim, net_arch, state_mlp_activation_fn)
+            )
+
         if self.cat_on_token:
-            self.n_output_channels = uni3d_config['embed_dim']
+            self.n_output_channels = pc_output_dim
         else:
-            self.n_output_channels += output_dim
-        self.state_mlp = nn.Sequential(*create_mlp(self.state_shape[0], output_dim, net_arch, state_mlp_activation_fn))
+            self.n_output_channels = pc_output_dim + output_dim * len(self.low_dim_keys)
 
         cprint(f"[DP3Encoder] Final output dim: {self.n_output_channels}", "yellow")
-
 
     def forward(self, observations: Dict, eval=False) -> torch.Tensor:
         points = observations[self.point_cloud_key]
         assert len(points.shape) == 3, cprint(f"point cloud shape: {points.shape}, length should be 3", "red")
         if self.use_imagined_robot:
-            img_points = observations[self.imagination_key][..., :points.shape[-1]] # align the last dim
+            img_points = observations[self.imagination_key][..., :points.shape[-1]]
             points = torch.concat([points, img_points], dim=1)
-        # Handle different encoder types
+
         if self.pointnet_type in ["uni3d", "uni3d_pretrained"]:
-            # Uni3D encoder requires 6-channel input (xyz + rgb)
             if points.shape[-1] == 3:
-                # If only xyz, pad with zero colors
                 colors = torch.zeros_like(points)
                 points = torch.cat([points, colors], dim=-1)
             elif points.shape[-1] > 6:
-                # If more than 6 channels, keep only the first 6
                 points = points[..., :6]
 
-        # points: B * N * (3 or 6)
-        # PointSAM: pc_embedding: [B*n_obs_steps, num_patches, embed_dim], pc_pe: [B*n_obs_steps, num_patches, embed_dim]
         if not self.pc_encoder_extract_global_feature:
             pn_feat, pc_pe = self.extractor(points, eval)
         else:
             pn_feat = self.extractor(points, eval)
 
-        state = observations[self.state_key]
-        state_feat = self.state_mlp(state)  # [B*n_obs_steps, embed_dim]
+        low_dim_features = []
+        for key in self.low_dim_keys:
+            low_dim_value = observations[key]
+            low_dim_feat = self.low_dim_mlps[key](low_dim_value)
+            if not self.pc_encoder_extract_global_feature:
+                if self.cat_on_token:
+                    low_dim_feat = low_dim_feat.unsqueeze(1)
+                else:
+                    low_dim_feat = low_dim_feat.unsqueeze(1).expand(-1, pn_feat.shape[1], -1)
+            low_dim_features.append(low_dim_feat)
 
-        if not self.pc_encoder_extract_global_feature:
-            if self.cat_on_token:
-                state_feat = state_feat.unsqueeze(1)
-            else:
-                state_feat = state_feat.unsqueeze(1).expand(-1, pn_feat.shape[1], -1)
-
-        # Prepare feature list for concatenation
-        features = [pn_feat, state_feat]
+        features = [pn_feat] + low_dim_features
         if self.cat_on_token:
             final_feat = torch.cat(features, dim=-2)
         else:
@@ -348,7 +336,6 @@ class DP3Encoder(nn.Module):
         if not self.pc_encoder_extract_global_feature:
             return final_feat, pc_pe
         return final_feat
-
 
     def output_shape(self):
         return self.n_output_channels
