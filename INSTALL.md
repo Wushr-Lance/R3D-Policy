@@ -59,7 +59,7 @@ cd ../../../../../..
 5.install torch
 
 ```bash
-# make sure using cuda>=12.1
+# make sure using cuda>=12.1, but we recommend using cuda==12.1
 pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
 ```
 
