@@ -17,7 +17,9 @@ The mouse option lets the wheel enter and navigate tmux copy mode. The history l
 
 ## Activation and verification
 
-Reload the configuration for a running tmux server, if one exists. Then query tmux for the effective `mouse` and `history-limit` global options. Existing panes may need to be recreated for the larger history limit to take full effect.
+Source the configuration into the currently running default tmux server so mouse scrolling becomes available immediately in its live sessions, including `data_download`, `r3d-place-shoe-0000`, and `tactile_vae`. Then query tmux for the effective `mouse` and `history-limit` global options.
+
+Mouse scrolling takes effect in existing panes without restarting them. The larger history limit applies to panes created after the reload; existing panes keep the limit they had when created. No session or pane will be restarted merely to enlarge its history.
 
 ## Scope
 
