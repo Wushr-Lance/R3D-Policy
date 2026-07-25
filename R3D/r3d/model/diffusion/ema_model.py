@@ -65,6 +65,10 @@ class EMAModel:
 
         all_dataptrs = set()
         for module, ema_module in zip(new_model.modules(), self.averaged_model.modules()):            
+            if isinstance(module, _BatchNorm):
+                            for buffer, ema_buffer in zip(module.buffers(recurse=False), ema_module.buffers(recurse=False)):
+                                ema_buffer.copy_(buffer.to(dtype=ema_buffer.dtype).data)
+            
             for param, ema_param in zip(module.parameters(recurse=False), ema_module.parameters(recurse=False)):
                 # iterative over immediate parameters only.
                 if isinstance(param, dict):
@@ -82,7 +86,7 @@ class EMAModel:
                 else:
                     ema_param.mul_(self.decay)
                     ema_param.add_(param.data.to(dtype=ema_param.dtype), alpha=1 - self.decay)
-
+            
         # verify that iterating over module and then parameters is identical to parameters recursively.
         # assert old_all_dataptrs == all_dataptrs
         self.optimization_step += 1
